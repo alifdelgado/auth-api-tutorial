@@ -1,11 +1,18 @@
 import { config } from "dotenv";
+import { bool, cleanEnv, num, str } from "envalid";
 config();
 
-export const PORT = process.env.PORT || 3000;
-export const MONGO_URI = process.env.MONGO_URI;
-export const LOG_LEVEL = process.env.LOG_LEVEL;
-export const SMTP_USER = process.env.SMTP_USER;
-export const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
-export const SMTP_HOST = process.env.SMTP_HOST;
-export const SMTP_PORT = +process.env.SMTP_PORT!;
-export const SMTP_SECURE = !process.env.SMTP_SECURE;
+const env = cleanEnv(process.env, {
+  PORT: num(),
+  MONGO_URI: str(),
+  LOG_LEVEL: str(),
+  SMTP_USER: str(),
+  SMTP_PASSWORD: str(),
+  SMTP_HOST: str(),
+  SMTP_PORT: num(),
+  SMTP_SECURE: bool(),
+  ACCESS_TOKEN_PRIVATE_KEY: str(),
+  REFRESH_TOKEN_PRIVATE_KEY: str(),
+});
+
+export default env;

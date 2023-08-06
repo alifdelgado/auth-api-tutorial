@@ -1,12 +1,6 @@
 import nodemailer, { SendMailOptions } from "nodemailer";
-import {
-  SMTP_HOST,
-  SMTP_PASSWORD,
-  SMTP_PORT,
-  SMTP_SECURE,
-  SMTP_USER,
-} from "../config/default";
 import { log } from "./logger";
+import env from "../config/default";
 
 const createTestCreds = async () => {
   const creds = await nodemailer.createTestAccount();
@@ -14,12 +8,12 @@ const createTestCreds = async () => {
 };
 
 const transporter = nodemailer.createTransport({
-  host: SMTP_HOST,
-  port: SMTP_PORT,
-  secure: SMTP_SECURE,
+  host: env.SMTP_HOST,
+  port: env.SMTP_PORT,
+  secure: env.SMTP_SECURE,
   auth: {
-    user: SMTP_USER,
-    pass: SMTP_PASSWORD,
+    user: env.SMTP_USER,
+    pass: env.SMTP_PASSWORD,
   },
 });
 

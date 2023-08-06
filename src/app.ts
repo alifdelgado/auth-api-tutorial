@@ -1,8 +1,8 @@
 import express from "express";
 import morgan from "morgan";
-import { PORT } from "./config/default";
 import { dbConnection } from "./utils/database";
 import router from "./routes";
+import env from "./config/default";
 
 const app = express();
 
@@ -12,5 +12,5 @@ app.use("/api", router);
 
 export const main = () => {
   dbConnection();
-  app.listen(PORT);
+  app.listen(env.PORT);
 };
