@@ -18,11 +18,11 @@ export const signJwt = (
 
 export const verifyJwt = <T>(
   token: string,
-  keyName: "accessTokenPrivateKey" | "refreshTokenPrivateKey"
+  keyName: "accessTokenPublicKey" | "refreshTokenPublicKey"
 ) => {
   const publicKey = keyName.includes("accessToken")
-    ? env.ACCESS_TOKEN_PRIVATE_KEY
-    : env.REFRESH_TOKEN_PRIVATE_KEY;
+    ? env.ACCESS_TOKEN_PUBLIC_KEY
+    : env.REFRESH_TOKEN_PUBLIC_KEY;
 
   try {
     return jwt.verify(token, publicKey) as T;

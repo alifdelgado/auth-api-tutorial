@@ -11,6 +11,14 @@ import {
 import { v4 as uuid } from "uuid";
 import { log } from "../utils/logger";
 
+export const privateFields = [
+  "password",
+  "_v",
+  "verificationCode",
+  "passwordResetCode",
+  "verified",
+];
+
 @pre<User>("save", async function () {
   if (!this.isModified("password")) return;
 

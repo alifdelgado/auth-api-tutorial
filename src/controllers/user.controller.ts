@@ -117,3 +117,7 @@ export const resetPasswordHandler = async (
 
   return response.status(200).json({ message: "Password reset successfully" });
 };
+
+export const getCurrentUserHandler = async (req: Request, res: Response) => {
+  return res.status(200).json({ user: res.locals.user });
+};
